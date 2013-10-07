@@ -31,7 +31,8 @@ template "/etc/apt/sources.list" do
   )
   notifies :run, "execute[apt-get update]", :immediately
   source "sources.list.erb"
-end
+  action :nothing
+end.run_action(:create)
 
 if node['ubuntu']['locale']
 
